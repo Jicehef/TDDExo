@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28010.2041
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JcfPctClassLibrary", "JcfPctClassLibrary\JcfPctClassLibrary.csproj", "{A66EFF56-FE9C-4C7F-9809-F409F493F7AB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JcfPctClassLibraryUnitTest", "JcfPctClassLibraryUnitTest\JcfPctClassLibraryUnitTest.csproj", "{FB627840-7B60-4025-9D10-94CDD9A4DB63}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A66EFF56-FE9C-4C7F-9809-F409F493F7AB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A66EFF56-FE9C-4C7F-9809-F409F493F7AB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A66EFF56-FE9C-4C7F-9809-F409F493F7AB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A66EFF56-FE9C-4C7F-9809-F409F493F7AB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FB627840-7B60-4025-9D10-94CDD9A4DB63}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FB627840-7B60-4025-9D10-94CDD9A4DB63}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FB627840-7B60-4025-9D10-94CDD9A4DB63}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FB627840-7B60-4025-9D10-94CDD9A4DB63}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {D8907F9D-FBA8-4ADF-AE54-17A94F7A57D6}
+	EndGlobalSection
+EndGlobal
