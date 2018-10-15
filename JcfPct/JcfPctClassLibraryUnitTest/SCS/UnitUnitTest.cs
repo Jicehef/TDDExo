@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Threading;
-using JcfPctClassLibrary.SCS;
+using PctClassLibrary.SCS;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NFluent;
 

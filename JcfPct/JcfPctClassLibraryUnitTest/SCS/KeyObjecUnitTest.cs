@@ -1,10 +1,8 @@
-﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NFluent;
+using PctClassLibrary.SCS;
 
-using JcfPctClassLibrary.SCS;
-
-namespace JcfPctClassLibraryUnitTest
+namespace JcfPctClassLibraryUnitTest.SCS
 {
     [TestClass]
     public class KeyObjecUnitTest
