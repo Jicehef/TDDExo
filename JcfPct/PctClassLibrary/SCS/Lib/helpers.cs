@@ -9,6 +9,5 @@ namespace PctClassLibrary.SCS.Lib
 {
     public class Helpers
     {
-
     }
 }

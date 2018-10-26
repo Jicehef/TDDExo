@@ -15,27 +15,30 @@ namespace JcfPctClassLibraryUnitTest.SCS
     [TestClass]
     public class ProductUnitTest
     {
-        List<Unit> units = new List<Unit>();
-        Dictionary<string, KeyObject> keyObjects =new Dictionary<string, KeyObject>();
+        Unit[] units = new Unit[4];
+        Dictionary<string, KeyObject> keyObjects = new Dictionary<string, KeyObject>();
 
         [TestInitialize]
         public void Test_Init()
         {
-            List<String> koNames = new List<string>(){"123", "234", "345", "456", "567","678"};
+            List<String> koNames = new List<string>() {"123", "234", "345", "456", "567", "678"};
             foreach (var koName in koNames)
             {
                 keyObjects.Add(koName, new KeyObject(koName));
             }
-            units.Add(new Unit(ImmutableList.Create<KeyObject>(keyObjects.ElementAt(0).Value)));
-            units.Add(new Unit(ImmutableList.Create<KeyObject>(keyObjects.ElementAt(1).Value)));
-            units.Add(new Unit(ImmutableList.Create<KeyObject>(keyObjects.ElementAt(2).Value, keyObjects.ElementAt(4).Value)));
-            units.Add(new Unit(ImmutableList.Create<KeyObject>(keyObjects.ElementAt(3).Value, keyObjects.ElementAt(5).Value)));
+
+            units[0] = new Unit(ImmutableList.Create<KeyObject>(keyObjects.ElementAt(0).Value));
+            units[1] = new Unit(ImmutableList.Create<KeyObject>(keyObjects.ElementAt(1).Value));
+            units[2] = new Unit(ImmutableList.Create<KeyObject>(keyObjects.ElementAt(2).Value,
+                keyObjects.ElementAt(4).Value));
+            units[3] = new Unit(ImmutableList.Create<KeyObject>(keyObjects.ElementAt(3).Value,
+                keyObjects.ElementAt(5).Value));
         }
 
         [TestMethod]
         public void Test_created_Product_is_of_correct_type()
         {
-            var product = new Product(new List<Unit>());
+            var product = new Product(new Unit[1]);
             Check.That(product).IsInstanceOf<Product>();
         }
 
@@ -55,6 +58,7 @@ namespace JcfPctClassLibraryUnitTest.SCS
                 var result = product.SelectKeyObject4Unit(keyObjects.ElementAt(i).Value, i);
                 Check.That(result).IsTrue();
             }
+
             Check.That(product.SelectKeyObject4Unit(keyObjects.ElementAt(4).Value, 2)).IsTrue();
             Check.That(product.SelectKeyObject4Unit(keyObjects.ElementAt(5).Value, 3)).IsTrue();
         }
@@ -88,5 +92,24 @@ namespace JcfPctClassLibraryUnitTest.SCS
             Check.That(result3 == keyObjects.ElementAt(5).Value).IsTrue();
         }
 
+        [TestMethod]
+        public void Test_for_GetKeyObject4Unit_when_unit_index_is_out_of_bounds_an_exception_is_raised()
+        {
+            var product = new Product(units);
+            Check.ThatCode(() =>
+            {
+                var result = product.GetKeyObject4Unit(10);
+            }).Throws<System.ArgumentException>();
+        }
+
+        [TestMethod]
+        public void Test_for_SelectKeyObject4Unit_when_unit_index_is_out_of_bounds_an_exception_is_raised()
+        {
+            var product = new Product(units);
+            Check.ThatCode(() =>
+            {
+                var result = product.SelectKeyObject4Unit(keyObjects.ElementAt(4).Value, 10);
+            }).Throws<System.ArgumentException>();
+        }
     }
 }

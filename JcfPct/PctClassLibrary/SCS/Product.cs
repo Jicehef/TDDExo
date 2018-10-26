@@ -4,9 +4,27 @@ namespace PctClassLibrary.SCS
 {
     public class Product
     {
-        public readonly  List<Unit> Units;
+        // todo public readonly or private with GetUnit method ??
+        public readonly  Unit[] Units;  
 
-        public Product(List<Unit> units)
+        private bool IsWithinUnitsBounds(int index)
+        {
+            if (index < 0 || index >= this.Units.Length)
+            {
+                return false;
+            }
+
+            return true;
+        }
+
+        private void CheckBounding(int unitNumber)
+        {
+            if (!IsWithinUnitsBounds(unitNumber))
+            {
+                throw new System.ArgumentException("Unit number is invalid", unitNumber.ToString());
+            }
+        }
+        public Product(Unit[] units)
         {
             this.Units = units;
         }
@@ -14,13 +32,17 @@ namespace PctClassLibrary.SCS
         public bool SelectKeyObject4Unit(KeyObject ko, int unitNumber)
         {
             // todo what to do when out of bounds ??
+            CheckBounding(unitNumber);
 
             return Units[unitNumber].SelectKeyObject(ko);
         }
 
+
         public KeyObject GetKeyObject4Unit(int unitNumber)
         {
             // todo what to do when out of bounds ??
+            CheckBounding(unitNumber);
+
             return Units[unitNumber].SelectedKeyObject;
         }
     }
