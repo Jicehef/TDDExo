@@ -69,11 +69,14 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Mechanical\SingleInputUnitTest.cs" />
+    <Compile Include="RCU\Type1\RoomControllerUnitType1UnitTest1.cs" />
     <Compile Include="SCS\DeviceIdUnitTest.cs" />
     <Compile Include="SCS\Lib\HelpersUnitTest.cs" />
     <Compile Include="SCS\ProductUnitTest.cs" />
     <Compile Include="SCS\KeyObjectUnitTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Common\SystemNameUnitTest.cs" />
     <Compile Include="SCS\UnitUnitTest.cs" />
   </ItemGroup>
   <ItemGroup>

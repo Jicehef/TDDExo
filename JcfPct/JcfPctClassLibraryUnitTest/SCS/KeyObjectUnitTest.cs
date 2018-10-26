@@ -23,6 +23,7 @@ namespace JcfPctClassLibraryUnitTest.SCS
 
         }
 
+        #region Test Operator Override
         [TestMethod]
         public void Test_KeyObject_equal_operator_override_are_equal()
         {
@@ -72,6 +73,43 @@ namespace JcfPctClassLibraryUnitTest.SCS
             Check.That(ko1A != ko2A).IsTrue();
             Check.That(ko2A != ko1A).IsTrue();
         }
+        #endregion
+
+        #region Test Equals Hash Override
+        [TestMethod]
+        public void Test_KeyObject_Equals_override_are_equal()
+        {
+            var ko1A = new KeyObject("12345");
+            var ko2A = new KeyObject("12345");
+            Check.That(ko1A.Equals(ko2A)).IsTrue();
+            Check.That(ko1A).Equals(ko2A);
+        }
+
+        [TestMethod]
+        public void Test_KeyObject_Equals_override_are_not_equal()
+        {
+            var ko1A = new KeyObject("12345");
+            var ko2A = new KeyObject("54321");
+            Check.That(ko1A.Equals(ko2A)).IsFalse();
+        }
+
+        [TestMethod]
+        public void Test_KeyObject_Equals_override_null_values()
+        {
+            var ko1A = new KeyObject("12345");
+            KeyObject ko2A = null;
+            Check.That(ko1A.Equals(ko2A)).IsFalse();
+        }
+
+        [TestMethod]
+        public void Test_KeyObject_GetHashCode()
+        {
+            var ko1A = new KeyObject("12345");
+            var ko2A = new KeyObject("65498");
+            Check.That(ko1A.GetHashCode()).IsEqualTo("12345".GetHashCode());
+            Check.That(ko2A.GetHashCode()).IsEqualTo("65498".GetHashCode());
+        }
+        #endregion
 
     }
 }

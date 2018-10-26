@@ -39,5 +39,22 @@
 
             return ko1.Name != ko2.Name;
         }
+
+        public override bool Equals(object obj)
+        {
+            var item = obj as KeyObject;
+
+            if (item == null)
+            {
+                return false;
+            }
+
+            return this.Name.Equals(item.Name);
+        }
+
+        public override int GetHashCode()
+        {
+            return this.Name.GetHashCode();
+        }
     }
 }

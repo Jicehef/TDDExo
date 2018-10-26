@@ -1,12 +1,17 @@
 ﻿using System.Collections.Generic;
+using PctClassLibrary.Common;
+using PctClassLibrary.Interfaces;
 
 namespace PctClassLibrary.SCS
 {
-    public class Product
+    public class Device: IDeviceInterface
     {
         // todo public readonly or private with GetUnit method ??
         public readonly  Unit[] Units;
         public readonly DeviceId BusID;
+
+        private string _systemIdentificator;
+
 
         private bool IsWithinUnitsBounds(int index)
         {
@@ -25,8 +30,9 @@ namespace PctClassLibrary.SCS
                 throw new System.ArgumentException("Unit number is invalid", unitNumber.ToString());
             }
         }
-        public Product(DeviceId ID, Unit[] units)
+        public Device(SystemName systemName, DeviceId ID, Unit[] units)
         {
+            this.SystemName = systemName;
             this.BusID = ID;
             this.Units = units;
         }
@@ -47,5 +53,7 @@ namespace PctClassLibrary.SCS
 
             return Units[unitNumber].SelectedKeyObject;
         }
+
+        public SystemName SystemName { get; set; }
     }
 }

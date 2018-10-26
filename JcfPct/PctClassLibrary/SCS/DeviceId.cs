@@ -9,7 +9,8 @@ namespace PctClassLibrary.SCS
 {
     public class DeviceId
     {
-        private string _deviceId;
+       private const string DeviceIdPattern = @"^[0-9a-fA-F]{8}$";
+       private string _deviceId;
 
         public string Value
         {
@@ -24,7 +25,7 @@ namespace PctClassLibrary.SCS
 
         private string SetDeviceId(string deviceId)
         {
-            if (IsValidId(deviceId))
+            if (IsValid(deviceId))
             {
                 return deviceId;
             }
@@ -34,12 +35,59 @@ namespace PctClassLibrary.SCS
             }
         }
 
-        public static bool IsValidId(string id)
+        public static bool IsValid(string id)
         {
-            string pattern = @"^[0-9a-fA-F]{8}$";
-            Regex regex = new Regex(pattern);
+            Regex regex = new Regex(DeviceIdPattern);
             Match match = regex.Match(id);
             return match.Success;
         }
+
+        public static bool operator ==(DeviceId id1, DeviceId id2)
+        {
+            if (object.ReferenceEquals(id1, null))
+            {
+                return object.ReferenceEquals(id2, null);
+            }
+
+            if (object.ReferenceEquals(id2, null))
+            {
+                return false;
+            }
+
+            return id1.Value == id2.Value;
+        }
+
+        public static bool operator !=(DeviceId id1, DeviceId id2)
+        {
+            if (object.ReferenceEquals(id1, null))
+            {
+                return !object.ReferenceEquals(id2, null);
+            }
+
+            if (object.ReferenceEquals(id2, null))
+            {
+                return true;
+            }
+
+            return id1.Value != id2.Value;
+        }
+
+        public override bool Equals(object obj)
+        {
+            var item = obj as DeviceId;
+
+            if (item == null)
+            {
+                return false;
+            }
+
+            return this.Value.Equals(item.Value);
+        }
+
+        public override int GetHashCode()
+        {
+            return this.Value.GetHashCode();
+        }
+
     }
 }

@@ -13,8 +13,8 @@ namespace JcfPctClassLibraryUnitTest.SCS
         [TestMethod]
         public void Test_created_DeviceId_is_of_correct_type()
         {
-            var ko = new DeviceId("12345678");
-            Check.That(ko).IsInstanceOf<DeviceId>();
+            var id = new DeviceId("12345678");
+            Check.That(id).IsInstanceOf<DeviceId>();
         }
 
         [TestMethod]
@@ -29,7 +29,7 @@ namespace JcfPctClassLibraryUnitTest.SCS
 
             foreach (var id in ids)
             {
-                Check.That(DeviceId.IsValidId(id)).IsTrue();
+                Check.That(DeviceId.IsValid(id)).IsTrue();
             }
         }
 
@@ -55,7 +55,7 @@ namespace JcfPctClassLibraryUnitTest.SCS
 
             foreach (var id in ids)
             {
-                Check.That(DeviceId.IsValidId(id)).IsFalse();
+                Check.That(DeviceId.IsValid(id)).IsFalse();
             }
         }
 
@@ -64,7 +64,6 @@ namespace JcfPctClassLibraryUnitTest.SCS
         {
             var deviceId = new DeviceId("12345678");
             Check.That(deviceId.Value).Equals("12345678");
-
         }
 
         [TestMethod]
@@ -79,7 +78,6 @@ namespace JcfPctClassLibraryUnitTest.SCS
             var deviceId = new DeviceId("12345678");
             deviceId.Value = "98765432";
             Check.That(deviceId.Value).Equals("98765432");
-
         }
 
         [TestMethod]
@@ -88,6 +86,89 @@ namespace JcfPctClassLibraryUnitTest.SCS
             var deviceId = new DeviceId("12345678");
             Check.ThatCode(() => { var x = deviceId.Value = "bad-id"; }).Throws<ArgumentException>();
         }
+        [TestMethod]
+        public void Test_value_is_a_valid_DeviceId()
+        {
+            Check.That(DeviceId.IsValid("12345678")).IsTrue();
+        }
 
+        [TestMethod]
+        public void Test_value_is_a_invalid_DeviceId()
+        {
+            Check.That(DeviceId.IsValid("bad-id")).IsFalse();
+        }
+
+
+        #region Test Operator Override
+        [TestMethod]
+        public void Test_DeviceId_equal_operator_override_null_values()
+        {
+            var id1A = new DeviceId("12345678");
+            DeviceId id2A = null;
+            Check.That(id1A == id2A).IsFalse();
+            Check.That(id2A == id1A).IsFalse();
+        }
+
+        [TestMethod]
+        public void Test_DeviceId_not_equal_operator_override_are_equal()
+        {
+            var id1A = new DeviceId("12345678");
+            var id2A = new DeviceId("65498123");
+            Check.That(id1A != id2A).IsTrue();
+        }
+
+        [TestMethod]
+        public void Test_DeviceId_not_equal_operator_override_are_not_equal()
+        {
+            var id1A = new DeviceId("12354321");
+            var id2A = new DeviceId("12354321");
+            Check.That(id1A != id2A).IsFalse();
+        }
+
+        [TestMethod]
+        public void Test_DeviceId_not_equal_operator_override_null_values()
+        {
+            var id1A = new DeviceId("12345678");
+            DeviceId id2A = null;
+            Check.That(id1A != id2A).IsTrue();
+            Check.That(id2A != id1A).IsTrue();
+        }
+        #endregion
+
+        #region Test Equals Hash Override
+        [TestMethod]
+        public void Test_DeviceId_Equals_override_are_equal()
+        {
+            var id1A = new DeviceId("12345678");
+            var id2A = new DeviceId("12345678");
+            Check.That(id1A.Equals(id2A)).IsTrue();
+            Check.That(id1A).Equals(id2A);
+        }
+
+        [TestMethod]
+        public void Test_DeviceId_Equals_override_are_not_equal()
+        {
+            var id1A = new DeviceId("12345678");
+            var id2A = new DeviceId("12354321");
+            Check.That(id1A.Equals(id2A)).IsFalse();
+        }
+
+        [TestMethod]
+        public void Test_DeviceId_Equals_override_null_values()
+        {
+            var id1A = new DeviceId("12345678");
+            DeviceId id2A = null;
+            Check.That(id1A.Equals(id2A)).IsFalse();
+        }
+
+        [TestMethod]
+        public void Test_DeviceId_GetHashCode()
+        {
+            var id1A = new DeviceId("12345678");
+            var id2A = new DeviceId("12365498");
+            Check.That(id1A.GetHashCode()).IsEqualTo("12345678".GetHashCode());
+            Check.That(id2A.GetHashCode()).IsEqualTo("12365498".GetHashCode());
+        }
+        #endregion
     }
 }
