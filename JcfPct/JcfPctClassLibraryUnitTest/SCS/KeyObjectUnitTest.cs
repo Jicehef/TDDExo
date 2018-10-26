@@ -5,7 +5,7 @@ using PctClassLibrary.SCS;
 namespace JcfPctClassLibraryUnitTest.SCS
 {
     [TestClass]
-    public class KeyObjecUnitTest
+    public class KeyObjectUnitTest
     {
         [TestMethod]
         public void Test_created_KeyObject_is_of_correct_type()

@@ -45,7 +45,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SCS\DeviceId.cs" />
     <Compile Include="SCS\KeyObject.cs" />
+    <Compile Include="SCS\Lib\Helpers.cs" />
     <Compile Include="SCS\Product.cs" />
     <Compile Include="SCS\Unit.cs" />
   </ItemGroup>
