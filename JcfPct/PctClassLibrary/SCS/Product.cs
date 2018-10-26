@@ -5,7 +5,8 @@ namespace PctClassLibrary.SCS
     public class Product
     {
         // todo public readonly or private with GetUnit method ??
-        public readonly  Unit[] Units;  
+        public readonly  Unit[] Units;
+        public readonly DeviceId BusID;
 
         private bool IsWithinUnitsBounds(int index)
         {
@@ -24,8 +25,9 @@ namespace PctClassLibrary.SCS
                 throw new System.ArgumentException("Unit number is invalid", unitNumber.ToString());
             }
         }
-        public Product(Unit[] units)
+        public Product(DeviceId ID, Unit[] units)
         {
+            this.BusID = ID;
             this.Units = units;
         }
 

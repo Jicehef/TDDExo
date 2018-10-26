@@ -10,22 +10,27 @@ namespace PctClassLibrary.SCS
     public class DeviceId
     {
         private string _deviceId;
-        public string Id => _deviceId;
+
+        public string Value
+        {
+            get => _deviceId;
+            set => _deviceId = SetDeviceId(value);
+        }
 
         public DeviceId(string deviceId)
         {
-            SetDeviceId(deviceId);
+            _deviceId = SetDeviceId(deviceId);
         }
 
-        public void SetDeviceId(string deviceId)
+        private string SetDeviceId(string deviceId)
         {
             if (IsValidId(deviceId))
             {
-                _deviceId = deviceId;
+                return deviceId;
             }
             else
             {
-                throw new System.ArgumentException("Device ID is invalid", deviceId);
+                throw new System.ArgumentException("Device BusID is invalid", deviceId);
             }
         }
 

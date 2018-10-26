@@ -60,16 +60,34 @@ namespace JcfPctClassLibraryUnitTest.SCS
         }
 
         [TestMethod]
-        public void Test_set_valid_DeviceId()
+        public void Test_constructor_set_valid_DeviceId()
         {
             var deviceId = new DeviceId("12345678");
-            Check.That(deviceId.Id).Equals("12345678");
+            Check.That(deviceId.Value).Equals("12345678");
+
         }
 
         [TestMethod]
-        public void Test_invalid_DeviceId_throws_exception()
+        public void Test_constructor_invalid_DeviceId_throws_exception()
         {
             Check.ThatCode(() => { var x = new DeviceId("bad-id"); }).Throws<ArgumentException>();
         }
+
+        [TestMethod]
+        public void Test_value_set_valid_DeviceId()
+        {
+            var deviceId = new DeviceId("12345678");
+            deviceId.Value = "98765432";
+            Check.That(deviceId.Value).Equals("98765432");
+
+        }
+
+        [TestMethod]
+        public void Test_value_invalid_DeviceId_throws_exception()
+        {
+            var deviceId = new DeviceId("12345678");
+            Check.ThatCode(() => { var x = deviceId.Value = "bad-id"; }).Throws<ArgumentException>();
+        }
+
     }
 }
