@@ -47,8 +47,8 @@
     <Compile Include="Common\definition.cs" />
     <Compile Include="Common\DeviceTechnology.cs" />
     <Compile Include="Common\SystemName.cs" />
-    <Compile Include="Interfaces\DeviceInterface.cs" />
-    <Compile Include="Interfaces\TechnologyInterface.cs" />
+    <Compile Include="Interfaces\IDeviceInterface.cs" />
+    <Compile Include="Interfaces\ITechnologyInterface.cs" />
     <Compile Include="Mechanical\SingleInput.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RCU\Type1\RoomControllerUnit.cs" />
