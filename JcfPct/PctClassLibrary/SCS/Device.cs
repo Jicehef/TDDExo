@@ -8,7 +8,7 @@ namespace PctClassLibrary.SCS
     {
         // todo public readonly or private with GetUnit method ??
         public readonly  Unit[] Units;
-        public readonly DeviceId BusID;
+        public readonly ScsId BusID;
 
         private string _systemIdentificator;
 
@@ -30,7 +30,7 @@ namespace PctClassLibrary.SCS
                 throw new System.ArgumentException("Unit number is invalid", unitNumber.ToString());
             }
         }
-        public Device(SystemName systemName, DeviceId ID, Unit[] units)
+        public Device(SystemName systemName, ScsId ID, Unit[] units)
         {
             this.SystemName = systemName;
             this.BusID = ID;

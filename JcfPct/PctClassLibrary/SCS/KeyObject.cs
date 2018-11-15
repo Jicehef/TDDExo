@@ -1,6 +1,8 @@
-﻿namespace PctClassLibrary.SCS
+﻿using PctClassLibrary.Common.DesignPattern;
+
+namespace PctClassLibrary.SCS
 {
-    public class KeyObject
+    public class KeyObject : ValueObject<KeyObject>
     {
         private readonly string _name;
 
@@ -10,51 +12,17 @@
         }
         public string Name => _name;
 
-        public static bool operator == (KeyObject ko1, KeyObject ko2)
+        protected override bool EqualsCore(KeyObject other)
         {
-            if (object.ReferenceEquals(ko1, null))
-            {
-                return object.ReferenceEquals(ko2, null);
-            }
-
-            if (object.ReferenceEquals(ko2, null))
-            {
-                return false;
-            }
-
-            return ko1.Name == ko2.Name;
+            return _name == other.Name;
         }
 
-        public static bool operator != (KeyObject ko1, KeyObject ko2)
+        protected override int GetHashCodeCore()
         {
-            if (object.ReferenceEquals(ko1, null))
+            unchecked
             {
-                return !object.ReferenceEquals(ko2, null);
+                return this.Name.GetHashCode();
             }
-
-            if (object.ReferenceEquals(ko2, null))
-            {
-                return true;
-            }
-
-            return ko1.Name != ko2.Name;
-        }
-
-        public override bool Equals(object obj)
-        {
-            var item = obj as KeyObject;
-
-            if (item == null)
-            {
-                return false;
-            }
-
-            return this.Name.Equals(item.Name);
-        }
-
-        public override int GetHashCode()
-        {
-            return this.Name.GetHashCode();
         }
     }
 }

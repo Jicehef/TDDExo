@@ -14,7 +14,7 @@ namespace PctClassLibraryUnitTest.SCS
     {
         Unit[] units = new Unit[4];
         private SystemName identificator = new SystemName("identificator01");
-        DeviceId deviceId = new DeviceId("12345678");
+        ScsId _scsId = new ScsId("12345678");
         Dictionary<string, KeyObject> keyObjects;
 
         [SetUp]
@@ -36,23 +36,23 @@ namespace PctClassLibraryUnitTest.SCS
         [Test]
         public void Create_an_instance_of_correct_type()
         {
-            var device = new Device(identificator, deviceId, new Unit[1]);
+            var device = new Device(identificator, _scsId, new Unit[1]);
             Check.That(device).IsInstanceOf<Device>();
         }
 
         [Test]
         public void Create_Device_with_correct_id()
         {
-            var device = new Device(identificator, deviceId, new Unit[1]);
+            var device = new Device(identificator, _scsId, new Unit[1]);
 
-            Check.That(device.BusID).IsEqualTo(deviceId);
+            Check.That(device.BusID).IsEqualTo(_scsId);
             Check.That(device.BusID.Value).IsEqualTo("12345678");
         }
 
         [Test]
         public void Accept_and_retrieve_units()
         {
-            var product = new Device(identificator, deviceId, units);
+            var product = new Device(identificator, _scsId, units);
             Check.That(product.Units.Count()).IsEqualTo(units.Count());
         }
 
@@ -64,7 +64,7 @@ namespace PctClassLibraryUnitTest.SCS
         [TestCase(5, 3)]
         public void Select_a_valid_ko_for_unit(int koListIndex, int unitIndex)
         {
-            var product = new Device(identificator, deviceId, units);
+            var product = new Device(identificator, _scsId, units);
 
             var successful = product.SelectKeyObject4Unit(keyObjects.ElementAt(koListIndex).Value, unitIndex);
             Check.That(successful).IsTrue();
@@ -78,7 +78,7 @@ namespace PctClassLibraryUnitTest.SCS
         [TestCase(5, 3)]
         public void Retrieve_selected_ko_for_unit(int koListIndex, int unitIndex)
         {
-            var product = new Device(identificator, deviceId, units);
+            var product = new Device(identificator, _scsId, units);
            
             product.SelectKeyObject4Unit(keyObjects.ElementAt(koListIndex).Value, unitIndex);
             var ko = product.GetKeyObject4Unit(unitIndex);
@@ -90,14 +90,14 @@ namespace PctClassLibraryUnitTest.SCS
         [TestCase(5, 2)]
         public void Not_select_an_invalid_ko_for_a_unit(int koListIndex, int unitIndex)
         {
-            var product = new Device(identificator, deviceId, units);
+            var product = new Device(identificator, _scsId, units);
             Check.That(product.SelectKeyObject4Unit(keyObjects.ElementAt(koListIndex).Value, unitIndex)).IsFalse();
         }
 
         [Test]
         public void Have_GetKeyObject4Unit_raise_an_exception_when_unit_index_is_out_of_bounds()
         {
-            var product = new Device(identificator, deviceId, units);
+            var product = new Device(identificator, _scsId, units);
             Check.ThatCode(() =>
             {
                 var result = product.GetKeyObject4Unit(10);
@@ -107,7 +107,7 @@ namespace PctClassLibraryUnitTest.SCS
         [Test]
         public void Have_SelectKeyObject4Unit_raise_an_exception_when_unit_index_is_out_of_bounds()
         {
-            var product = new Device(identificator, deviceId, units);
+            var product = new Device(identificator, _scsId, units);
             Check.ThatCode(() =>
             {
                 var result = product.SelectKeyObject4Unit(keyObjects.ElementAt(4).Value, 10);

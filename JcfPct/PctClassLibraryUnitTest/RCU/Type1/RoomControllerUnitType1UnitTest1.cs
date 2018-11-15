@@ -28,7 +28,7 @@ namespace PctClassLibraryUnitTest.RCU.Type1
         public void Add_and_retrieve_a_SCS_device()
         {
             var sn = new SystemName("scsDevice");
-            var id = new DeviceId("12345678");
+            var id = new ScsId("12345678");
             var units = new Unit[0];
             var scsDevice = new PctClassLibrary.SCS.Device(sn, id, units);
             var rcu = new RoomControllerUnit(Definition.TechnologyType.SCS);
