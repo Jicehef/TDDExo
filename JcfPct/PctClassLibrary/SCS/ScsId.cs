@@ -4,11 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
-using PctClassLibrary.Common.DesignPattern;
+using Value;
 
 namespace PctClassLibrary.SCS
 {
-    public class ScsId: ValueObject<ScsId>
+    public class ScsId: ValueType<ScsId>
     {
        private const string DeviceIdPattern = @"^[0-9a-fA-F]{8}$";
        private string _scsId;
@@ -42,17 +42,10 @@ namespace PctClassLibrary.SCS
             return match.Success;
         }
 
-        protected override bool EqualsCore(ScsId other)
+        protected override IEnumerable<object> GetAllAttributesToBeUsedForEquality()
         {
-            return _scsId == other.Value;
-        }
-        protected override int GetHashCodeCore()
-        {
-            unchecked
-            {
-                int hashCode = _scsId.GetHashCode();
-                return hashCode;
-            }
+            // we decorate our standard HashSet with the SetByValue helper class.
+            return new List<object>() {this._scsId };
         }
 
     }

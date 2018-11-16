@@ -7,10 +7,10 @@ namespace PctClassLibraryUnitTest.SCS
 {
 
     // todo ?? should be split in more classes ??
-    public class DeviceIdShould
+    public class ScsIdShould
     {
         [Test]
-        public void Be_of_DeviceId_type_when_created()
+        public void Be_of_ScsId_type_when_created()
         {
             var id = new ScsId("12345678");
             Check.That(id).IsInstanceOf<ScsId>();
@@ -96,7 +96,7 @@ namespace PctClassLibraryUnitTest.SCS
         }
 
         [Test]
-        public void Not_be_different_when_1_null_value()
+        public void Be_different_when_1_null_value()
         {
             var id1A = new ScsId("12345678");
             ScsId id2A = null;

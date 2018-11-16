@@ -1,8 +1,9 @@
-﻿using PctClassLibrary.Common.DesignPattern;
+﻿using System.Collections.Generic;
+using Value;
 
 namespace PctClassLibrary.SCS
 {
-    public class KeyObject : ValueObject<KeyObject>
+    public class KeyObject : ValueType<KeyObject>
     {
         private readonly string _name;
 
@@ -12,17 +13,10 @@ namespace PctClassLibrary.SCS
         }
         public string Name => _name;
 
-        protected override bool EqualsCore(KeyObject other)
+        protected override IEnumerable<object> GetAllAttributesToBeUsedForEquality()
         {
-            return _name == other.Name;
-        }
-
-        protected override int GetHashCodeCore()
-        {
-            unchecked
-            {
-                return this.Name.GetHashCode();
-            }
+            // we decorate our standard HashSet with the SetByValue helper class.
+            return new List<object>() {this._name };
         }
     }
 }
