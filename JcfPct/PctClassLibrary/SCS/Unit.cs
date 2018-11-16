@@ -1,4 +1,5 @@
-﻿using System.Collections.Immutable;
+﻿using System.Collections.Generic;
+using System.Collections.Immutable;
 using System.Linq;
 
 namespace PctClassLibrary.SCS
@@ -7,18 +8,18 @@ namespace PctClassLibrary.SCS
     {
         private KeyObject _selectedKeyObject;
         public KeyObject SelectedKeyObject => _selectedKeyObject;
-        public readonly ImmutableList<KeyObject> CanDoKeyObjects;
+        public readonly ListOfKeyObjects CanDoKeyObjects;
 
-        public Unit(ImmutableList<KeyObject> canDoKeyObjects)
+        public Unit(ListOfKeyObjects canDoKeyObjects)
         {
             this.CanDoKeyObjects = canDoKeyObjects;
         }
 
         public bool SelectKeyObject(KeyObject toSelect)
         {
-            var x = CanDoKeyObjects.FirstOrDefault(o => o.Name == toSelect.Name);
-            _selectedKeyObject = x;
-            return x != null;
+            bool isInList = CanDoKeyObjects.IsInList(toSelect);
+            _selectedKeyObject = isInList ? toSelect: null;
+            return isInList;
         }
 
         public void ResetSelectedKeyObject()

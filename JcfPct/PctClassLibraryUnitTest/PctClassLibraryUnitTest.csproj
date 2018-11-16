@@ -71,6 +71,7 @@
     <Compile Include="Mechanical\SingleInputUnitTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RCU\Type1\RoomControllerUnitType1UnitTest1.cs" />
+    <Compile Include="SCS\ListOfKeyObjectsUnitTest.cs" />
     <Compile Include="SCS\ScsIdUnitTest.cs" />
     <Compile Include="SCS\KeyObjectUnitTest.cs" />
     <Compile Include="SCS\Lib\HelpersUnitTest.cs" />

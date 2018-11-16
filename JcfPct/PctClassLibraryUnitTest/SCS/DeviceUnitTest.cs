@@ -28,10 +28,10 @@ namespace PctClassLibraryUnitTest.SCS
                 keyObjects.Add(koName, new KeyObject(koName));
             }
 
-            units[0] = new Unit(ImmutableList.Create<KeyObject>(keyObjects.ElementAt(0).Value));
-            units[1] = new Unit(ImmutableList.Create<KeyObject>(keyObjects.ElementAt(1).Value));
-            units[2] = new Unit(ImmutableList.Create<KeyObject>(keyObjects.ElementAt(2).Value, keyObjects.ElementAt(4).Value));
-            units[3] = new Unit(ImmutableList.Create<KeyObject>(keyObjects.ElementAt(3).Value, keyObjects.ElementAt(5).Value));
+            units[0] = new Unit(new ListOfKeyObjects(new List<KeyObject>(){ keyObjects.ElementAt(0).Value }));
+            units[1] = new Unit(new ListOfKeyObjects(new List<KeyObject>() { keyObjects.ElementAt(1).Value }));
+            units[2] = new Unit(new ListOfKeyObjects(new List<KeyObject>() { keyObjects.ElementAt(2).Value, keyObjects.ElementAt(4).Value }));
+            units[3] = new Unit(new ListOfKeyObjects(new List<KeyObject>() { keyObjects.ElementAt(3).Value, keyObjects.ElementAt(5).Value }));
         }
 
         [Test]
