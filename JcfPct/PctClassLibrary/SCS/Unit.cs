@@ -12,19 +12,21 @@ namespace PctClassLibrary.SCS
 
         public Unit(ListOfKeyObjects canDoKeyObjects)
         {
+
             this.CanDoKeyObjects = canDoKeyObjects;
+            _selectedKeyObject = canDoKeyObjects.GetFirstItem();
         }
 
         public bool SelectKeyObject(KeyObject toSelect)
         {
             bool isInList = CanDoKeyObjects.IsInList(toSelect);
-            _selectedKeyObject = isInList ? toSelect: null;
+            _selectedKeyObject = isInList ? toSelect : _selectedKeyObject;
             return isInList;
         }
 
         public void ResetSelectedKeyObject()
         {
-            _selectedKeyObject = null;
+            _selectedKeyObject = CanDoKeyObjects.GetFirstItem();
         }
 
     }

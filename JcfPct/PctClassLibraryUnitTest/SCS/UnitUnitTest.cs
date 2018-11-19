@@ -11,9 +11,22 @@ namespace PctClassLibraryUnitTest.SCS
         [Test]
         public void Create_instance_of_correct_type()
         {
-            var unit = new Unit(new ListOfKeyObjects(new List<KeyObject>()));
+            var ko1A = new KeyObject("12345");
+            var unit = new Unit(new ListOfKeyObjects(new List<KeyObject>() {ko1A}));
             Check.That(unit).IsInstanceOf<Unit>();
         }
+
+        [Test]
+        public void Have_in_SelectedKeyObject_first_list_item_selected()
+        {
+            var ko1A = new KeyObject("12345");
+            var ko2A = new KeyObject("78954");
+ 
+            var canDo = new ListOfKeyObjects(new List<KeyObject>() { ko1A, ko2A });
+            var unit = new Unit(canDo);
+            Check.That(unit.SelectedKeyObject).IsEqualTo(ko1A);
+        }
+
 
         [Test]
         public void Have_SelectKeyObject_can_select_a_KeyObject_in_the_list()
@@ -24,7 +37,7 @@ namespace PctClassLibraryUnitTest.SCS
 
             var canDoKOs = new ListOfKeyObjects(new List<KeyObject>(){ko1A, ko2A}) ;
             var unit = new Unit(canDoKOs);
-            Check.That(unit.SelectedKeyObject == null);
+            Check.That(unit.SelectedKeyObject).IsEqualTo(ko1A);
 
             Check.That(unit.SelectKeyObject(ko1A)).IsTrue();
             Check.That(unit.SelectedKeyObject == ko1A).IsTrue();
@@ -40,33 +53,34 @@ namespace PctClassLibraryUnitTest.SCS
 
             var canDoKOs = new ListOfKeyObjects(new List<KeyObject>() { ko1A, ko2A });
             var unit = new Unit(canDoKOs);
-            Check.That(unit.SelectedKeyObject == null);
+            Check.That(unit.SelectedKeyObject == ko1A);
 
             Check.That(unit.SelectKeyObject(ko1A)).IsTrue();
             Check.That(unit.SelectedKeyObject == ko1A).IsTrue();
 
             Check.That(unit.SelectKeyObject(koOther)).IsFalse();
-            Check.That(unit.SelectedKeyObject).IsNull();
+            Check.That(unit.SelectedKeyObject).IsEqualTo(ko1A);
         }
 
         [Test]
-        public void Have_ResetKeyObject_set_the_value_to_null()
+        public void Have_ResetKeyObject_set_the_value_to_first_item_in_list()
         {
             var ko1A = new KeyObject("12345");
             var ko2A = new KeyObject("78954");
-            var koOther = new KeyObject("9999");
 
             var canDoKOs = new ListOfKeyObjects(new List<KeyObject>() { ko1A, ko2A });
             var unit = new Unit(canDoKOs);
-            #region do_we_need_to_check_here_?
-            Check.That(unit.SelectedKeyObject == null);
+
+            // todo do_we_need_to_check_here_?
+            Check.That(unit.SelectedKeyObject == ko1A);
 
             Check.That(unit.SelectKeyObject(ko1A)).IsTrue();
             Check.That(unit.SelectedKeyObject == ko1A).IsTrue();
-            #endregion
+            // end todo
 
             unit.ResetSelectedKeyObject();
-            Check.That(unit.SelectedKeyObject).IsNull();
+            Check.That(unit.SelectedKeyObject).IsEqualTo(ko1A);
         }
+
     }
 }

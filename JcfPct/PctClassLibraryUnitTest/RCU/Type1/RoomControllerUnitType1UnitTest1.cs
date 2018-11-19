@@ -36,8 +36,8 @@ namespace PctClassLibraryUnitTest.RCU.Type1
 
             Check.That(rcu.SCSDevices.Devices[0]).IsInstanceOf<PctClassLibrary.SCS.Device>();
             Check.That(rcu.SCSDevices.Devices[0].SystemName.Value).IsEqualTo("scsDevice");
-            Check.That(((PctClassLibrary.SCS.Device)rcu.SCSDevices.Devices[0]).BusID).Equals(id);
-            Check.That(((PctClassLibrary.SCS.Device)rcu.SCSDevices.Devices[0]).BusID.Value).IsEqualTo("12345678");
+            Check.That(((PctClassLibrary.SCS.Device)rcu.SCSDevices.Devices[0]).BusId).Equals(id);
+            Check.That(((PctClassLibrary.SCS.Device)rcu.SCSDevices.Devices[0]).BusId.Value).IsEqualTo("12345678");
         }
     }
 }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using Value;
 
@@ -13,6 +14,11 @@ namespace PctClassLibrary.SCS
 
         public ListOfKeyObjects(List<KeyObject> keyObjects)
         {
+            if (!keyObjects.Any())
+            {
+                throw new System.ArgumentException("Empty list of KeyObjects invalid");
+            }
+
             this._keyObjects = new HashSet<KeyObject>();
             foreach (var keyObject in keyObjects)
             {
@@ -20,10 +26,31 @@ namespace PctClassLibrary.SCS
             }
         }
 
+        public KeyObject GetFirstItem()
+        {
+            return _keyObjects.First();
+        }
+
+        public int Count()
+        {
+            return this._keyObjects.Count();
+        }
+
         public bool IsInList(KeyObject keyObject)
         {
             var x = this._keyObjects.FirstOrDefault(o => o == keyObject);
             return x != null;
+        }
+
+        public List<KeyObject> GetList()
+        {
+            var listOfKeyObjects = new List<KeyObject>();
+            foreach (var keyObject in _keyObjects)
+            {
+                listOfKeyObjects.Add(keyObject);
+            }
+
+            return listOfKeyObjects;
         }
 
         protected override IEnumerable<object> GetAllAttributesToBeUsedForEquality()

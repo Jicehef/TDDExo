@@ -15,23 +15,23 @@ namespace PctClassLibraryUnitTest.SCS
     {
         Unit[] units = new Unit[4];
         private SystemName identificator = new SystemName("identificator01");
-        ScsId _scsId = new ScsId("12345678");
-        Dictionary<string, KeyObject> keyObjects;
+        private ScsId _scsId = new ScsId("12345678");
+        private Dictionary<string, KeyObject> _keyObjects;
 
         [SetUp]
         public void Test_Init()
         {
-            keyObjects = new Dictionary<string, KeyObject>();
+            _keyObjects = new Dictionary<string, KeyObject>();
             List<String> koNames = new List<string>() {"123", "234", "345", "456", "567", "678"};
             foreach (var koName in koNames)
             {
-                keyObjects.Add(koName, new KeyObject(koName));
+                _keyObjects.Add(koName, new KeyObject(koName));
             }
 
-            units[0] = new Unit(new ListOfKeyObjects(new List<KeyObject>(){ keyObjects.ElementAt(0).Value }));
-            units[1] = new Unit(new ListOfKeyObjects(new List<KeyObject>() { keyObjects.ElementAt(1).Value }));
-            units[2] = new Unit(new ListOfKeyObjects(new List<KeyObject>() { keyObjects.ElementAt(2).Value, keyObjects.ElementAt(4).Value }));
-            units[3] = new Unit(new ListOfKeyObjects(new List<KeyObject>() { keyObjects.ElementAt(3).Value, keyObjects.ElementAt(5).Value }));
+            units[0] = new Unit(new ListOfKeyObjects(new List<KeyObject>() { _keyObjects.ElementAt(0).Value }));
+            units[1] = new Unit(new ListOfKeyObjects(new List<KeyObject>() { _keyObjects.ElementAt(1).Value }));
+            units[2] = new Unit(new ListOfKeyObjects(new List<KeyObject>() { _keyObjects.ElementAt(2).Value, _keyObjects.ElementAt(4).Value }));
+            units[3] = new Unit(new ListOfKeyObjects(new List<KeyObject>() { _keyObjects.ElementAt(3).Value, _keyObjects.ElementAt(5).Value }));
         }
 
         [Test]
@@ -46,8 +46,8 @@ namespace PctClassLibraryUnitTest.SCS
         {
             var device = new Device(identificator, _scsId, new Unit[1]);
 
-            Check.That(device.BusID).IsEqualTo(_scsId);
-            Check.That(device.BusID.Value).IsEqualTo("12345678");
+            Check.That(device.BusId).IsEqualTo(_scsId);
+            Check.That(device.BusId.Value).IsEqualTo("12345678");
         }
 
         [Test]
@@ -67,7 +67,7 @@ namespace PctClassLibraryUnitTest.SCS
         {
             var product = new Device(identificator, _scsId, units);
 
-            var successful = product.SelectKeyObject4Unit(keyObjects.ElementAt(koListIndex).Value, unitIndex);
+            var successful = product.SelectKeyObject4Unit(_keyObjects.ElementAt(koListIndex).Value, unitIndex);
             Check.That(successful).IsTrue();
         }
 
@@ -81,9 +81,9 @@ namespace PctClassLibraryUnitTest.SCS
         {
             var product = new Device(identificator, _scsId, units);
            
-            product.SelectKeyObject4Unit(keyObjects.ElementAt(koListIndex).Value, unitIndex);
+            product.SelectKeyObject4Unit(_keyObjects.ElementAt(koListIndex).Value, unitIndex);
             var ko = product.GetKeyObject4Unit(unitIndex);
-            Check.That(ko == keyObjects.ElementAt(koListIndex).Value).IsTrue();
+            Check.That(ko == _keyObjects.ElementAt(koListIndex).Value).IsTrue();
         }
 
         [TestCase(0, 1)]
@@ -92,7 +92,7 @@ namespace PctClassLibraryUnitTest.SCS
         public void Not_select_an_invalid_ko_for_a_unit(int koListIndex, int unitIndex)
         {
             var product = new Device(identificator, _scsId, units);
-            Check.That(product.SelectKeyObject4Unit(keyObjects.ElementAt(koListIndex).Value, unitIndex)).IsFalse();
+            Check.That(product.SelectKeyObject4Unit(_keyObjects.ElementAt(koListIndex).Value, unitIndex)).IsFalse();
         }
 
         [Test]
@@ -111,8 +111,26 @@ namespace PctClassLibraryUnitTest.SCS
             var product = new Device(identificator, _scsId, units);
             Check.ThatCode(() =>
             {
-                var result = product.SelectKeyObject4Unit(keyObjects.ElementAt(4).Value, 10);
+                var result = product.SelectKeyObject4Unit(_keyObjects.ElementAt(4).Value, 10);
             }).Throws<System.ArgumentException>();
+        }
+
+        [Test]
+        public void Can_retrieve_its_name()
+        {
+            var device = new Device(identificator, _scsId, new Unit[1]);
+
+            Check.That(device.SystemName).IsEqualTo(new SystemName("identificator01"));
+        }
+
+        [Test]
+        public void Can_change_and_retrieve_its_name()
+        {
+            var device = new Device(identificator, _scsId, new Unit[1]);
+            string newSystemName = "newSystemName";
+
+            device.SystemName = new SystemName(newSystemName);
+            Check.That(device.SystemName).IsEqualTo(new SystemName(newSystemName));
         }
     }
 }

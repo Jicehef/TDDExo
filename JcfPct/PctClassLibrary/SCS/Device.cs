@@ -8,11 +8,33 @@ namespace PctClassLibrary.SCS
     {
         // todo public readonly or private with GetUnit method ??
         public readonly  Unit[] Units;
-        public readonly ScsId BusID;
+        public readonly ScsId BusId;
 
-        private string _systemIdentificator;
+        public SystemName SystemName { get; set; }
 
+        public Device(SystemName systemName, ScsId id, Unit[] units)
+        {
+            this.SystemName = systemName;
+            this.BusId = id;
+            this.Units = units;
+        }
 
+        public bool SelectKeyObject4Unit(KeyObject ko, int unitNumber)
+        {
+            // todo what to do when out of bounds ??
+            CheckBounding(unitNumber);
+
+            return Units[unitNumber].SelectKeyObject(ko);
+        }
+        
+        public KeyObject GetKeyObject4Unit(int unitNumber)
+        {
+            // todo what to do when out of bounds ??
+            CheckBounding(unitNumber);
+
+            return Units[unitNumber].SelectedKeyObject;
+        }
+        
         private bool IsWithinUnitsBounds(int index)
         {
             if (index < 0 || index >= this.Units.Length)
@@ -30,30 +52,6 @@ namespace PctClassLibrary.SCS
                 throw new System.ArgumentException("Unit number is invalid", unitNumber.ToString());
             }
         }
-        public Device(SystemName systemName, ScsId ID, Unit[] units)
-        {
-            this.SystemName = systemName;
-            this.BusID = ID;
-            this.Units = units;
-        }
 
-        public bool SelectKeyObject4Unit(KeyObject ko, int unitNumber)
-        {
-            // todo what to do when out of bounds ??
-            CheckBounding(unitNumber);
-
-            return Units[unitNumber].SelectKeyObject(ko);
-        }
-
-
-        public KeyObject GetKeyObject4Unit(int unitNumber)
-        {
-            // todo what to do when out of bounds ??
-            CheckBounding(unitNumber);
-
-            return Units[unitNumber].SelectedKeyObject;
-        }
-
-        public SystemName SystemName { get; set; }
     }
 }
