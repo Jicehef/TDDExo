@@ -32,7 +32,7 @@ namespace PctClassLibraryUnitTest.Common
         }
         
         [Test]
-        public void Create_an_instance_with_a_correct_value_retrieve_it()
+        public void Create_an_instance_with_a_correct_value_and_retrieve_it()
         {
             var sn = new SystemName("MyValue");
             Check.That(sn.Value).IsEqualTo("MyValue");
@@ -47,7 +47,7 @@ namespace PctClassLibraryUnitTest.Common
             Check.That(SystemName.IsValid(sn)).IsTrue();
         }
 
-        [TestCase("Indicator 01")]
+        [TestCase("No space 01")]
         [TestCase("no3")]
         [TestCase("no-more-than-20-char-because-too-much")]
         [TestCase("forbiddenchar/")]
@@ -56,7 +56,7 @@ namespace PctClassLibraryUnitTest.Common
         [TestCase("forbiddenchar+")]
         [TestCase("forbiddenchar%")]
         [TestCase("forbiddenchar&")]
-        public void Test_invalid_system_names(string sn)
+        public void Have_the_values_not_valid(string sn)
         {
             Check.That(SystemName.IsValid(sn)).IsFalse();
         }

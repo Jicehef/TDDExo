@@ -15,7 +15,7 @@ namespace PctClassLibraryUnitTest.SCS
         [Test]
         public void Be_of_ListOfKeyObjects_type_when_created()
         {
-            var ko1A = new KeyObject("12345");
+            var ko1A = new KeyObject("123");
             var listOfKeyObjects = new ListOfKeyObjects(new List<KeyObject>() { ko1A });
             Check.That(listOfKeyObjects).IsInstanceOf<ListOfKeyObjects>();
         }
@@ -30,9 +30,9 @@ namespace PctClassLibraryUnitTest.SCS
         [Test]
         public void Be_equal_to_another_containing_same_key_objects()
         {
-            var ko1A = new KeyObject("12345");
-            var ko2A = new KeyObject("45678");
-            var ko3A = new KeyObject("32187");
+            var ko1A = new KeyObject("123");
+            var ko2A = new KeyObject("456");
+            var ko3A = new KeyObject("321");
 
             var list1 = new List<KeyObject>() { ko1A, ko2A, ko3A };
             var list2 = new List<KeyObject>() { ko2A, ko3A, ko1A };
@@ -41,11 +41,11 @@ namespace PctClassLibraryUnitTest.SCS
         }
 
         [Test]
-        public void Not_be_equal_to_another_containing_same_key_objects()
+        public void Not_be_equal_to_another_containing_different_number_of_key_objects()
         {
-            var ko1A = new KeyObject("12345");
-            var ko2A = new KeyObject("45678");
-            var ko3A = new KeyObject("32187");
+            var ko1A = new KeyObject("123");
+            var ko2A = new KeyObject("456");
+            var ko3A = new KeyObject("321");
 
             var list1 = new List<KeyObject>() { ko1A, ko2A, ko3A };
             var list2 = new List<KeyObject>() { ko2A, ko1A };
@@ -56,64 +56,64 @@ namespace PctClassLibraryUnitTest.SCS
         [Test]
         public void Find_a_key_object_present_in_the_list()
         {
-            var ko1A = new KeyObject("12345");
-            var ko2A = new KeyObject("45678");
-            var ko3A = new KeyObject("32187");
-            var ko2Find = new KeyObject("12345");
+            var ko1A = new KeyObject("123");
+            var ko2A = new KeyObject("456");
+            var ko3A = new KeyObject("321");
+            var ko2Find = new KeyObject("123");
 
             var list1 = new List<KeyObject>() { ko1A, ko2A, ko3A };
             var listOfKeyObjects = new ListOfKeyObjects(list1);
 
-            Check.That(listOfKeyObjects.IsInList(ko2Find)).IsTrue();
+            Check.That(listOfKeyObjects.Contains(ko2Find)).IsTrue();
         }
 
         [Test]
-        public void Not_find_a_key_object_present_in_the_list()
+        public void Not_find_a_key_object_when_not_in_the_list()
         {
-            var ko1A = new KeyObject("12345");
-            var ko2A = new KeyObject("45678");
-            var ko3A = new KeyObject("32187");
-            var ko2Find = new KeyObject("54879");
+            var ko1A = new KeyObject("123");
+            var ko2A = new KeyObject("456");
+            var ko3A = new KeyObject("321");
+            var ko2Find = new KeyObject("548");
 
             var list1 = new List<KeyObject>() { ko1A, ko2A, ko3A };
             var listOfKeyObjects = new ListOfKeyObjects(list1);
 
-            Check.That(listOfKeyObjects.IsInList(ko2Find)).IsFalse();
+            Check.That(listOfKeyObjects.Contains(ko2Find)).IsFalse();
         }
 
         [Test]
         public void Return_a_list_containing_all_items()
         {
-            var ko1A = new KeyObject("12345");
-            var ko2A = new KeyObject("45678");
-            var ko3A = new KeyObject("32187");
+            var ko1A = new KeyObject("123");
+            var ko2A = new KeyObject("456");
+            var ko3A = new KeyObject("321");
 
             var list1 = new List<KeyObject>() { ko1A, ko2A, ko3A };
             var listOfKeyObjects = new ListOfKeyObjects(list1);
 
-            Check.That(listOfKeyObjects.GetList()).ContainsExactly(list1);
+            Check.That(listOfKeyObjects.ToList()).ContainsExactly(list1);
         }
 
         [Test]
         public void Return_a_list_containing_original_instances_of_KeyObject_not_copies()
         {
-            var ko1A = new KeyObject("12345");
-            var ko2A = new KeyObject("45678");
-            var ko3A = new KeyObject("32187");
+            var ko1A = new KeyObject("123");
+            var ko2A = new KeyObject("456");
+            var ko3A = new KeyObject("321");
 
             var list1 = new List<KeyObject>() { ko1A, ko2A, ko3A };
             var listOfKeyObjects = new ListOfKeyObjects(list1);
-            var list2 = listOfKeyObjects.GetList();
+            var list2 = listOfKeyObjects.ToList();
 
             Check.That(ko1A).IsEqualTo(list2[0]).And.IsSameReferenceAs(list2[0]);
         }
 
         [Test]
-        public void Count_returns_3()
+        public void Have_count_returns_3_when3_items_are_given()
         {
-            var ko1A = new KeyObject("12345");
-            var ko2A = new KeyObject("45678");
-            var ko3A = new KeyObject("32187");
+            var ko1A = new KeyObject("123");
+            var ko2A = new KeyObject("456");
+            var ko3A = new KeyObject("321");
 
             var list1 = new List<KeyObject>() { ko1A, ko2A, ko3A };
             var listOfKeyObjects = new ListOfKeyObjects(list1);
@@ -124,9 +124,9 @@ namespace PctClassLibraryUnitTest.SCS
         [Test]
         public void Have_GetFirstItem_returns_first_item_in_parameter_list()
         {
-            var ko1A = new KeyObject("12345");
-            var ko2A = new KeyObject("45678");
-            var ko3A = new KeyObject("32187");
+            var ko1A = new KeyObject("123");
+            var ko2A = new KeyObject("456");
+            var ko3A = new KeyObject("321");
 
             var list1 = new List<KeyObject>() { ko1A, ko2A, ko3A };
             var listOfKeyObjects = new ListOfKeyObjects(list1);

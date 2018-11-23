@@ -36,13 +36,13 @@ namespace PctClassLibrary.SCS
             return this._keyObjects.Count();
         }
 
-        public bool IsInList(KeyObject keyObject)
+        public bool Contains(KeyObject keyObject)
         {
             var x = this._keyObjects.FirstOrDefault(o => o == keyObject);
             return x != null;
         }
 
-        public List<KeyObject> GetList()
+        public List<KeyObject> ToList()
         {
             var listOfKeyObjects = new List<KeyObject>();
             foreach (var keyObject in _keyObjects)

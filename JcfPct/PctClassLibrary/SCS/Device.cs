@@ -32,7 +32,7 @@ namespace PctClassLibrary.SCS
             // todo what to do when out of bounds ??
             CheckBounding(unitNumber);
 
-            return Units[unitNumber].SelectedKeyObject;
+            return Units[unitNumber].KeyObject;
         }
         
         private bool IsWithinUnitsBounds(int index)

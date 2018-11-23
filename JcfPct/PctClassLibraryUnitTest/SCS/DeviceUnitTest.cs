@@ -124,7 +124,7 @@ namespace PctClassLibraryUnitTest.SCS
         }
 
         [Test]
-        public void Can_change_and_retrieve_its_name()
+        public void Change_and_retrieve_its_name()
         {
             var device = new Device(identificator, _scsId, new Unit[1]);
             string newSystemName = "newSystemName";
