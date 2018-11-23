@@ -12,6 +12,7 @@ namespace PctClassLibrary.RCU.Type1
         public readonly Definition.TechnologyType TechnologyType;
         public DeviceTechnology SCSDevices = new DeviceTechnology(Definition.TechnologyType.SCS);
         public DeviceTechnology mecaDevices = new DeviceTechnology(Definition.TechnologyType.Mecanical);
+        public readonly List<Object> Objects;
 
         public RoomControllerUnit(Definition.TechnologyType technoType)
         {

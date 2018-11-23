@@ -54,8 +54,10 @@
     <Compile Include="Interfaces\ITechnologyInterface.cs" />
     <Compile Include="Mechanical\SingleInput.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RCU\Object.cs" />
     <Compile Include="RCU\Type1\RoomControllerUnit.cs" />
     <Compile Include="SCS\ListOfKeyObjects.cs" />
+    <Compile Include="SCS\Parameter.cs" />
     <Compile Include="SCS\ScsId.cs" />
     <Compile Include="SCS\KeyObject.cs" />
     <Compile Include="SCS\Lib\Helpers.cs" />
