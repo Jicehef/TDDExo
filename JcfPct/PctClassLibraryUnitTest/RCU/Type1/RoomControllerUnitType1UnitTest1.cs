@@ -1,43 +1,70 @@
-﻿using NFluent;
+﻿using System.Collections.Generic;
+using NFluent;
 using NUnit.Framework;
 using PctClassLibrary.Common;
+using PctClassLibrary.RCU;
 using PctClassLibrary.RCU.Type1;
 using PctClassLibrary.SCS;
 
 namespace PctClassLibraryUnitTest.RCU.Type1
 {
-    public class RcuType1Should
+    public class RoomControllerUnitShould
     {
+        private List<RcuObject> _objects;
+        private List<Definition.TechnologyType>  _technologyTypes;
+        private RcuObject rcuObject1 = new RcuObject("Name100", "100");
+        private RcuObject rcuObject2 = new RcuObject("Name200", "200");
+        private RcuObject rcuObject3 = new RcuObject("Name300", "300");
+        private RcuObject rcuObject4 = new RcuObject("Name400", "400");
+
+        [SetUp]
+        public void Test_Init()
+        {
+
+           _objects = new List<RcuObject>() {
+               rcuObject1,
+               rcuObject2,
+               rcuObject3,
+               rcuObject4
+           };
+
+            _technologyTypes = new List<Definition.TechnologyType>()
+            {
+                Definition.TechnologyType.SCS,
+                Definition.TechnologyType.Mecanical
+            };
+        }
+
         [Test]
         public void Create_instance_of_correct_type()
         {
-            var rcu = new RoomControllerUnit(Definition.TechnologyType.SCS);
+            var rcu = new RoomControllerUnit(_objects, _technologyTypes);
 
             Check.That(rcu).IsInstanceOf<RoomControllerUnit>();
         }
 
         [Test]
-        public void Accept_and_retrieve_correct_type()
+        public void Retrieve_TechnologyType_present_in_list()
         {
-            var rcu = new RoomControllerUnit(Definition.TechnologyType.SCS);
+            var rcu = new RoomControllerUnit(_objects, _technologyTypes);
 
-            Check.That(rcu.TechnologyType).IsEqualTo(Definition.TechnologyType.SCS);
+            Check.That(rcu.IsTechnologyValid(Definition.TechnologyType.SCS)).IsTrue();
         }
 
         [Test]
-        public void Add_and_retrieve_a_SCS_device()
+        public void Not_retrieve_TechnologyType_present_in_list()
         {
-            var sn = new SystemName("scsDevice");
-            var id = new ScsId("12345678");
-            var units = new Unit[0];
-            var scsDevice = new PctClassLibrary.SCS.Device(sn, id, units);
-            var rcu = new RoomControllerUnit(Definition.TechnologyType.SCS);
-            rcu.SCSDevices.AddDevice(scsDevice);
+            var rcu = new RoomControllerUnit(_objects, _technologyTypes);
 
-            Check.That(rcu.SCSDevices.Devices[0]).IsInstanceOf<PctClassLibrary.SCS.Device>();
-            Check.That(rcu.SCSDevices.Devices[0].SystemName.Value).IsEqualTo("scsDevice");
-            Check.That(((PctClassLibrary.SCS.Device)rcu.SCSDevices.Devices[0]).BusId).Equals(id);
-            Check.That(((PctClassLibrary.SCS.Device)rcu.SCSDevices.Devices[0]).BusId.Value).IsEqualTo("12345678");
+            Check.That(rcu.IsTechnologyValid(Definition.TechnologyType.KNX)).IsFalse();
         }
+
+        //[Test]
+        //public void Have_GetRcuObject_return_1_instance_with_instance_0()
+        //{
+        //    var rcu = new RoomControllerUnit(_objects, _technologyTypes);
+        //    Check.That( rcu.GetRcuObjects()).ContainsExactly(new )
+        //}
+
     }
 }

@@ -8,13 +8,18 @@ using PctClassLibrary.Interfaces;
 
 namespace PctClassLibrary.Mechanical
 {
-    public class SingleInput: IDeviceInterface
+    public class SingleInput: IDevice
     {
         public SystemName SystemName { get; set; }
 
-        public SingleInput(string name)
+        private Definition.TechnologyType _technologyType;
+        public Definition.TechnologyType TechnologyType => _technologyType;
+
+
+        public SingleInput(SystemName systemName)
         {
-            SystemName = new SystemName(name);
+            _technologyType = Definition.TechnologyType.Mecanical;
+            SystemName = systemName;
         }
     }
 }

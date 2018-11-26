@@ -4,16 +4,19 @@ using PctClassLibrary.Interfaces;
 
 namespace PctClassLibrary.SCS
 {
-    public class Device: IDeviceInterface
+    public class Device: IDevice
     {
         // todo public readonly or private with GetUnit method ??
         public readonly  Unit[] Units;
         public readonly ScsId BusId;
-
         public SystemName SystemName { get; set; }
+
+        private Definition.TechnologyType _technologyType;
+        public Definition.TechnologyType TechnologyType => _technologyType;  
 
         public Device(SystemName systemName, ScsId id, Unit[] units)
         {
+            this._technologyType = Definition.TechnologyType.SCS;
             this.SystemName = systemName;
             this.BusId = id;
             this.Units = units;

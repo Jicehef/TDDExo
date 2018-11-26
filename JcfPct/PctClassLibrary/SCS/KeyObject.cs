@@ -4,7 +4,7 @@ using Value;
 
 namespace PctClassLibrary.SCS
 {
-    public class KeyObject : ValueType<KeyObject>
+    public class KeyObject : ValueType<KeyObject>, IDeviceCapacity
     {
         private const string NamePattern = @"^[0-9]{3}$";
         private readonly string _name;

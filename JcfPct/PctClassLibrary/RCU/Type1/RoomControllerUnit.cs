@@ -9,15 +9,23 @@ namespace PctClassLibrary.RCU.Type1
 {
     public class RoomControllerUnit
     {
-        public readonly Definition.TechnologyType TechnologyType;
-        public DeviceTechnology SCSDevices = new DeviceTechnology(Definition.TechnologyType.SCS);
-        public DeviceTechnology mecaDevices = new DeviceTechnology(Definition.TechnologyType.Mecanical);
-        public readonly List<Object> Objects;
+        private readonly List<RcuObject> _objects;
+        private readonly List<Definition.TechnologyType> _technologyTypes;
 
-        public RoomControllerUnit(Definition.TechnologyType technoType)
+        public RoomControllerUnit(List<RcuObject> objects, List<Definition.TechnologyType> technologyTypes)
         {
-            TechnologyType = technoType;
+            _objects = objects;
+            _technologyTypes = technologyTypes;
         }
 
+        public bool IsTechnologyValid(Definition.TechnologyType technologyType)
+        {
+            return _technologyTypes.Any(tt => tt == technologyType);
+        }
+
+        public IEnumerable<RcuObject> GetRcuObjects()
+        {
+            return _objects;
+        }
     }
 }

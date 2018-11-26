@@ -7,9 +7,9 @@ using PctClassLibrary.Interfaces;
 
 namespace PctClassLibrary.Common
 {
-    public class DeviceTechnology: ITechnologyInterface
+    public class DeviceTechnology: ITechnology
     {
-        public List<IDeviceInterface> Devices = new List<IDeviceInterface>();
+        public List<IDevice> Devices = new List<IDevice>();
 
         public DeviceTechnology(Definition.TechnologyType technology)
         {
@@ -18,7 +18,7 @@ namespace PctClassLibrary.Common
 
         public Definition.TechnologyType Technology { get; set; }
 
-        public void AddDevice(IDeviceInterface device)
+        public void AddDevice(IDevice device)
         {
             Devices.Add(device);
         }
