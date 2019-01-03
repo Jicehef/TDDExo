@@ -34,7 +34,7 @@ namespace PctClassLibrary.SCS
         protected override IEnumerable<object> GetAllAttributesToBeUsedForEquality()
         {
             // we decorate our standard HashSet with the SetByValue helper class.
-            return new List<object>() { this._name };
+            return new List<object>() { this._name, this._value };
         }
 
     }

@@ -57,6 +57,7 @@
     <Compile Include="RCU\KeyObjectRcuObjectProxy.cs" />
     <Compile Include="RCU\RcuObject.cs" />
     <Compile Include="Interfaces\IRCUController.cs" />
+    <Compile Include="RCU\RcuObjectInstance.cs" />
     <Compile Include="RCU\Type1\AvailableObjectInstance.cs" />
     <Compile Include="RCU\Type1\RcuController.cs" />
     <Compile Include="RCU\Type1\RoomControllerUnit.cs" />

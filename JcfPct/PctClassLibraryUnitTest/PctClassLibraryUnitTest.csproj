@@ -73,6 +73,7 @@
     <Compile Include="RCU\KeyObjectRcuObjectProxyUnitTest.cs" />
     <Compile Include="RCU\RcuControllerUnitTest.cs" />
     <Compile Include="RCU\Type1\RoomControllerUnitType1UnitTest1.cs" />
+    <Compile Include="SCS\ParameterUnitTest.cs" />
     <Compile Include="SCS\ListOfKeyObjectsUnitTest.cs" />
     <Compile Include="SCS\ScsIdUnitTest.cs" />
     <Compile Include="SCS\KeyObjectUnitTest.cs" />

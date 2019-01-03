@@ -98,7 +98,7 @@ namespace PctClassLibraryUnitTest.SCS
         }
 
         [Test]
-        public void Have_equals_flase_with_different_values()
+        public void Have_equals_false_with_different_values()
         {
             var ko1A = new KeyObject("123");
             var ko2A = new KeyObject("543");
