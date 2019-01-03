@@ -8,16 +8,16 @@ using PctClassLibrary.SCS;
 
 namespace PctClassLibrary.RCU
 {
-    public class KeyObjectRcuObjectProxy
+    public class KeyObjectRcuFunctionalObjectProxy
     {
-        private Dictionary<KeyObject, RcuFunctionnalObject> _proxy;
+        private Dictionary<KeyObject, RcuFunctionalObject> _proxy;
 
-        public KeyObjectRcuObjectProxy(Dictionary<KeyObject, RcuFunctionnalObject> proxy)
+        public KeyObjectRcuFunctionalObjectProxy(Dictionary<KeyObject, RcuFunctionalObject> proxy)
         {
             _proxy = proxy;
         }
 
-        public RcuObjectInstance GetObjectInstance(KeyObject keyObject, IRCUController rcuController)
+        public RcuFunctionalObjectInstance GetObjectInstance(KeyObject keyObject, IRCUController rcuController)
         {
             if (_proxy.ContainsKey(keyObject))
             {

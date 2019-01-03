@@ -10,22 +10,22 @@ namespace PctClassLibraryUnitTest.RCU.Type1
 {
     public class RoomControllerUnitShould
     {
-        private List<RcuFunctionnalObject> _objects;
+        private List<RcuFunctionalObject> _objects;
         private List<Definition.TechnologyType>  _technologyTypes;
-        private RcuFunctionnalObject _rcuFunctionnalObject1 = new RcuFunctionnalObject("Name100", "100");
-        private RcuFunctionnalObject _rcuFunctionnalObject2 = new RcuFunctionnalObject("Name200", "200");
-        private RcuFunctionnalObject _rcuFunctionnalObject3 = new RcuFunctionnalObject("Name300", "300");
-        private RcuFunctionnalObject _rcuFunctionnalObject4 = new RcuFunctionnalObject("Name400", "400");
+        private RcuFunctionalObject _rcuFunctionalObject1 = new RcuFunctionalObject("Name100", "100");
+        private RcuFunctionalObject _rcuFunctionalObject2 = new RcuFunctionalObject("Name200", "200");
+        private RcuFunctionalObject _rcuFunctionalObject3 = new RcuFunctionalObject("Name300", "300");
+        private RcuFunctionalObject _rcuFunctionalObject4 = new RcuFunctionalObject("Name400", "400");
 
         [SetUp]
         public void Test_Init()
         {
 
-           _objects = new List<RcuFunctionnalObject>() {
-               _rcuFunctionnalObject1,
-               _rcuFunctionnalObject2,
-               _rcuFunctionnalObject3,
-               _rcuFunctionnalObject4
+           _objects = new List<RcuFunctionalObject>() {
+               _rcuFunctionalObject1,
+               _rcuFunctionalObject2,
+               _rcuFunctionalObject3,
+               _rcuFunctionalObject4
            };
 
             _technologyTypes = new List<Definition.TechnologyType>()
@@ -60,10 +60,10 @@ namespace PctClassLibraryUnitTest.RCU.Type1
         }
 
         //[Test]
-        //public void Have_GetRcuObject_return_1_instance_with_instance_0()
+        //public void Have_GetRcuFunctionalObject_return_1_instance_with_instance_0()
         //{
         //    var rcu = new RoomControllerUnit(_objects, _technologyTypes);
-        //    Check.That( rcu.GetRcuObjects()).ContainsExactly(new )
+        //    Check.That( rcu.GetRcuFunctionalObjects()).ContainsExactly(new )
         //}
 
     }

@@ -32,10 +32,10 @@ namespace PctClassLibrary.RCU.Type1
             return _deviceTechnologies.FirstOrDefault(d => d.Technology == technology);
         }
 
-        public RcuObjectInstance GetObjectInstance(RcuFunctionnalObject rcuFunctionnalObject)
+        public RcuFunctionalObjectInstance GetObjectInstance(RcuFunctionalObject rcuFunctionalObject)
         {
-            var objectInstance = GetAvailable(rcuFunctionnalObject);
-            return objectInstance?.BookRcuObjectInstance();
+            var objectInstance = GetAvailable(rcuFunctionalObject);
+            return objectInstance?.BookRcuFunctionalObjectInstance();
         }
 
         private DeviceTechnology GetDeviceTechnology(IDevice device)
@@ -51,22 +51,22 @@ namespace PctClassLibrary.RCU.Type1
             return technology;
         }
 
-        private AvailableObjectInstance GetAvailable(RcuFunctionnalObject rcuFunctionnalObject)
+        private AvailableObjectInstance GetAvailable(RcuFunctionalObject rcuFunctionalObject)
         {
             var objectInstances =
-                _availableObjectInstances.Where(o => o.RcuFunctionnalObject == rcuFunctionnalObject && o.IsAvailable);
+                _availableObjectInstances.Where(o => o.RcuFunctionalObject == rcuFunctionalObject && o.IsAvailable);
             return objectInstances.Any() ? objectInstances.First() : null;
         }
 
         private void LoadAvailableObjectInstances()
         {
             _availableObjectInstances = new List<AvailableObjectInstance>();
-            foreach (var groupRcuObject in _roomControllerUnit.GetRcuObjects().GroupBy(o => o.GetName()))
+            foreach (var rcuFunctionalObjects in _roomControllerUnit.GetRcuFunctionalObjects().GroupBy(o => o.GetName()))
             {
                 var index = 0;
-                foreach (var rcuObject in groupRcuObject)
+                foreach (var rcuFunctionalObject in rcuFunctionalObjects)
                 {
-                    _availableObjectInstances.Add(new AvailableObjectInstance(new RcuObjectInstance(rcuObject, index)));
+                    _availableObjectInstances.Add(new AvailableObjectInstance(new RcuFunctionalObjectInstance(rcuFunctionalObject, index)));
                     index++;
                 }
             }

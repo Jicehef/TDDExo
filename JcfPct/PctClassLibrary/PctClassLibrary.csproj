@@ -54,10 +54,10 @@
     <Compile Include="Interfaces\ITechnology.cs" />
     <Compile Include="Mechanical\SingleInput.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RCU\KeyObjectRcuObjectProxy.cs" />
-    <Compile Include="RCU\RcuFunctionnalObject.cs" />
+    <Compile Include="RCU\KeyObjectRcuFunctionalObjectProxy.cs" />
+    <Compile Include="RCU\RcuFunctionalObject.cs" />
     <Compile Include="Interfaces\IRCUController.cs" />
-    <Compile Include="RCU\RcuObjectInstance.cs" />
+    <Compile Include="RCU\RcuFunctionalObjectInstance.cs" />
     <Compile Include="RCU\Type1\AvailableObjectInstance.cs" />
     <Compile Include="RCU\Type1\RcuController.cs" />
     <Compile Include="RCU\Type1\RoomControllerUnit.cs" />

@@ -2,16 +2,16 @@
 {
     internal class AvailableObjectInstance
     {
-        private RcuObjectInstance _objectInstance;
+        private RcuFunctionalObjectInstance _functionalObjectInstance;
 
         private bool _availability;
 
         public bool IsAvailable => _availability;
-        public RcuFunctionnalObject RcuFunctionnalObject => _objectInstance.RcuFunctionnalObject;
+        public RcuFunctionalObject RcuFunctionalObject => _functionalObjectInstance.RcuFunctionalObject;
 
-        public AvailableObjectInstance(RcuObjectInstance objectInstance, bool availability = true)
+        public AvailableObjectInstance(RcuFunctionalObjectInstance functionalObjectInstance, bool availability = true)
         {
-            _objectInstance = objectInstance;
+            _functionalObjectInstance = functionalObjectInstance;
             _availability = availability;
         }
 
@@ -20,10 +20,10 @@
             _availability = true;
         }
 
-        public RcuObjectInstance BookRcuObjectInstance()
+        public RcuFunctionalObjectInstance BookRcuFunctionalObjectInstance()
         {
             SetUnavailable();
-            return _objectInstance;
+            return _functionalObjectInstance;
         }
 
         private void SetUnavailable()

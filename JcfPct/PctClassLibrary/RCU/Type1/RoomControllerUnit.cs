@@ -9,10 +9,10 @@ namespace PctClassLibrary.RCU.Type1
 {
     public class RoomControllerUnit
     {
-        private readonly List<RcuFunctionnalObject> _objects;
+        private readonly List<RcuFunctionalObject> _objects;
         private readonly List<Definition.TechnologyType> _technologyTypes;
 
-        public RoomControllerUnit(List<RcuFunctionnalObject> objects, List<Definition.TechnologyType> technologyTypes)
+        public RoomControllerUnit(List<RcuFunctionalObject> objects, List<Definition.TechnologyType> technologyTypes)
         {
             _objects = objects;
             _technologyTypes = technologyTypes;
@@ -23,7 +23,7 @@ namespace PctClassLibrary.RCU.Type1
             return _technologyTypes.Any(tt => tt == technologyType);
         }
 
-        public IEnumerable<RcuFunctionnalObject> GetRcuObjects()
+        public IEnumerable<RcuFunctionalObject> GetRcuFunctionalObjects()
         {
             return _objects;
         }
