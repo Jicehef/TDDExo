@@ -55,7 +55,7 @@
     <Compile Include="Mechanical\SingleInput.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RCU\KeyObjectRcuObjectProxy.cs" />
-    <Compile Include="RCU\RcuObject.cs" />
+    <Compile Include="RCU\RcuFunctionnalObject.cs" />
     <Compile Include="Interfaces\IRCUController.cs" />
     <Compile Include="RCU\RcuObjectInstance.cs" />
     <Compile Include="RCU\Type1\AvailableObjectInstance.cs" />

@@ -32,9 +32,9 @@ namespace PctClassLibrary.RCU.Type1
             return _deviceTechnologies.FirstOrDefault(d => d.Technology == technology);
         }
 
-        public RcuObjectInstance GetObjectInstance(RcuObject rcuObject)
+        public RcuObjectInstance GetObjectInstance(RcuFunctionnalObject rcuFunctionnalObject)
         {
-            var objectInstance = GetAvailable(rcuObject);
+            var objectInstance = GetAvailable(rcuFunctionnalObject);
             return objectInstance?.BookRcuObjectInstance();
         }
 
@@ -51,10 +51,10 @@ namespace PctClassLibrary.RCU.Type1
             return technology;
         }
 
-        private AvailableObjectInstance GetAvailable(RcuObject rcuObject)
+        private AvailableObjectInstance GetAvailable(RcuFunctionnalObject rcuFunctionnalObject)
         {
             var objectInstances =
-                _availableObjectInstances.Where(o => o.RcuObject == rcuObject && o.IsAvailable);
+                _availableObjectInstances.Where(o => o.RcuFunctionnalObject == rcuFunctionnalObject && o.IsAvailable);
             return objectInstances.Any() ? objectInstances.First() : null;
         }
 

@@ -10,22 +10,22 @@ namespace PctClassLibraryUnitTest.RCU.Type1
 {
     public class RoomControllerUnitShould
     {
-        private List<RcuObject> _objects;
+        private List<RcuFunctionnalObject> _objects;
         private List<Definition.TechnologyType>  _technologyTypes;
-        private RcuObject rcuObject1 = new RcuObject("Name100", "100");
-        private RcuObject rcuObject2 = new RcuObject("Name200", "200");
-        private RcuObject rcuObject3 = new RcuObject("Name300", "300");
-        private RcuObject rcuObject4 = new RcuObject("Name400", "400");
+        private RcuFunctionnalObject _rcuFunctionnalObject1 = new RcuFunctionnalObject("Name100", "100");
+        private RcuFunctionnalObject _rcuFunctionnalObject2 = new RcuFunctionnalObject("Name200", "200");
+        private RcuFunctionnalObject _rcuFunctionnalObject3 = new RcuFunctionnalObject("Name300", "300");
+        private RcuFunctionnalObject _rcuFunctionnalObject4 = new RcuFunctionnalObject("Name400", "400");
 
         [SetUp]
         public void Test_Init()
         {
 
-           _objects = new List<RcuObject>() {
-               rcuObject1,
-               rcuObject2,
-               rcuObject3,
-               rcuObject4
+           _objects = new List<RcuFunctionnalObject>() {
+               _rcuFunctionnalObject1,
+               _rcuFunctionnalObject2,
+               _rcuFunctionnalObject3,
+               _rcuFunctionnalObject4
            };
 
             _technologyTypes = new List<Definition.TechnologyType>()

@@ -7,7 +7,7 @@
         private bool _availability;
 
         public bool IsAvailable => _availability;
-        public RcuObject RcuObject => _objectInstance.RcuObject;
+        public RcuFunctionnalObject RcuFunctionnalObject => _objectInstance.RcuFunctionnalObject;
 
         public AvailableObjectInstance(RcuObjectInstance objectInstance, bool availability = true)
         {

@@ -13,32 +13,32 @@ namespace PctClassLibraryUnitTest.RCU
     {
         private RcuController _rcuController;
         private RoomControllerUnit _roomControllerUnit;
-        private List<RcuObject> _objects;
+        private List<RcuFunctionnalObject> _objects;
         private List<Definition.TechnologyType> _technologyTypes;
-        private RcuObject rcuObject1 = new RcuObject("Name100", "100");
-        private RcuObject rcuObject2 = new RcuObject("Name200", "200");
-        private RcuObject rcuObject3 = new RcuObject("Name300", "300");
-        private RcuObject rcuObject4 = new RcuObject("Name400", "400");
+        private RcuFunctionnalObject _rcuFunctionnalObject1 = new RcuFunctionnalObject("Name100", "100");
+        private RcuFunctionnalObject _rcuFunctionnalObject2 = new RcuFunctionnalObject("Name200", "200");
+        private RcuFunctionnalObject _rcuFunctionnalObject3 = new RcuFunctionnalObject("Name300", "300");
+        private RcuFunctionnalObject _rcuFunctionnalObject4 = new RcuFunctionnalObject("Name400", "400");
 
         private KeyObject _keyObject1 = new KeyObject("100");
         private KeyObject _keyObject2 = new KeyObject("200");
         private KeyObject _keyObject3 = new KeyObject("300");
         private KeyObject _keyObject4 = new KeyObject("400");
 
-        private Dictionary<KeyObject, RcuObject> _proxyDictionnary;
+        private Dictionary<KeyObject, RcuFunctionnalObject> _proxyDictionnary;
 
         [SetUp]
         public void InitTest()
         {
-            _objects = new List<RcuObject>() {
-                rcuObject1,
-                rcuObject1,
-                rcuObject1,
-                rcuObject1,
-                rcuObject2,
-                rcuObject3,
-                rcuObject4,
-                rcuObject4
+            _objects = new List<RcuFunctionnalObject>() {
+                _rcuFunctionnalObject1,
+                _rcuFunctionnalObject1,
+                _rcuFunctionnalObject1,
+                _rcuFunctionnalObject1,
+                _rcuFunctionnalObject2,
+                _rcuFunctionnalObject3,
+                _rcuFunctionnalObject4,
+                _rcuFunctionnalObject4
             };
 
             _technologyTypes = new List<Definition.TechnologyType>()
@@ -50,12 +50,12 @@ namespace PctClassLibraryUnitTest.RCU
             _roomControllerUnit = new RoomControllerUnit(_objects, _technologyTypes);
             _rcuController = new RcuController(_roomControllerUnit);
 
-            _proxyDictionnary = new Dictionary<KeyObject, RcuObject>()
+            _proxyDictionnary = new Dictionary<KeyObject, RcuFunctionnalObject>()
             {
-                [_keyObject1] = rcuObject1,
-                [_keyObject2] = rcuObject2,
-                [_keyObject3] = rcuObject3,
-                [_keyObject4] = rcuObject4,
+                [_keyObject1] = _rcuFunctionnalObject1,
+                [_keyObject2] = _rcuFunctionnalObject2,
+                [_keyObject3] = _rcuFunctionnalObject3,
+                [_keyObject4] = _rcuFunctionnalObject4,
             };
 
         }
@@ -65,7 +65,7 @@ namespace PctClassLibraryUnitTest.RCU
         {
             var _proxy = new KeyObjectRcuObjectProxy(_proxyDictionnary);
             var x = _proxy.GetObjectInstance(_keyObject2, _rcuController);
-            Check.That(x.RcuObject).IsEqualTo(rcuObject2);
+            Check.That(x.RcuFunctionnalObject).IsEqualTo(_rcuFunctionnalObject2);
             Check.That(x.InstanceNumber).IsEqualTo(0);
 
         }
@@ -85,7 +85,7 @@ namespace PctClassLibraryUnitTest.RCU
             var _proxy = new KeyObjectRcuObjectProxy(_proxyDictionnary);
             var x = _proxy.GetObjectInstance(_keyObject1, _rcuController);
             var y = _proxy.GetObjectInstance(_keyObject1, _rcuController);
-            Check.That(y.RcuObject).IsEqualTo(rcuObject1);
+            Check.That(y.RcuFunctionnalObject).IsEqualTo(_rcuFunctionnalObject1);
             Check.That(y.InstanceNumber).IsEqualTo(1);
 
         }

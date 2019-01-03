@@ -4,12 +4,12 @@ using Value;
 namespace PctClassLibrary.RCU
 {
 
-    public class RcuObject: ValueType<RcuObject>
+    public class RcuFunctionnalObject: ValueType<RcuFunctionnalObject>
     {
         private readonly string _name;
         private readonly string _referenceNumber;
 
-        public RcuObject(string name, string referenceNumber)
+        public RcuFunctionnalObject(string name, string referenceNumber)
         {
             _name = name;
             _referenceNumber = referenceNumber;

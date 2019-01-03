@@ -2,12 +2,12 @@
 {
     public class RcuObjectInstance
     {
-        public RcuObject RcuObject { get; set; }
+        public RcuFunctionnalObject RcuFunctionnalObject { get; set; }
         public int InstanceNumber { get; set; }
 
-        public RcuObjectInstance(RcuObject rcuObject, int instanceNumber)
+        public RcuObjectInstance(RcuFunctionnalObject rcuFunctionnalObject, int instanceNumber)
         {
-            RcuObject = rcuObject;
+            RcuFunctionnalObject = rcuFunctionnalObject;
             InstanceNumber = instanceNumber;
         }
     }

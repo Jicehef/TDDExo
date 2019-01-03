@@ -6,6 +6,6 @@ namespace PctClassLibrary.RCU.Type1
     {
         void AddDevice(IDevice device);
 
-        RcuObjectInstance GetObjectInstance(RcuObject rcuObject);
+        RcuObjectInstance GetObjectInstance(RcuFunctionnalObject rcuFunctionnalObject);
     }
 }

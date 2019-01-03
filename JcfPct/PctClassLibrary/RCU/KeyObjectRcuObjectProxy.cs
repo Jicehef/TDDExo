@@ -10,9 +10,9 @@ namespace PctClassLibrary.RCU
 {
     public class KeyObjectRcuObjectProxy
     {
-        private Dictionary<KeyObject, RcuObject> _proxy;
+        private Dictionary<KeyObject, RcuFunctionnalObject> _proxy;
 
-        public KeyObjectRcuObjectProxy(Dictionary<KeyObject, RcuObject> proxy)
+        public KeyObjectRcuObjectProxy(Dictionary<KeyObject, RcuFunctionnalObject> proxy)
         {
             _proxy = proxy;
         }
